@@ -17,15 +17,7 @@ import model.User;
 public class EmailManager 
 {	
 	private static final String from = "noreplyrenotes12@gmail.com";
-	private static final String password = "33851242Re";
-	
-	public static void main(String[] args) 
-	{
-		//(Math.random() * ((max - min) + 1)) + min
-		double code = Math.random() * ((9999 - 1000) + 1);
-		int code2 = (int) code;
-		System.out.println(code2);
-	}
+	private static final String password = "XXXXXXXXXX";
 	
 	protected static Session getSession() 
 	{
