@@ -97,12 +97,13 @@
               <form class="card-body" id="form-registrazione" action="LoginSevlet" method="post">
                             <h3 class="dark-grey-text text-center" id="scritta-superiore"> <strong>Accedi</strong></h3>
                             <hr>
+                            <h6 style="color: red;">${scrittaErrore}</h6>
                   <div id="campiInput">
                     <div id="divisore-mail">
                               <div class="md-form">
                                 <i class="fas fa-envelope prefix grey-text"></i>
-                                <input type="text" class="form-control" id="mail-accesso" name="mail-accesso">
-                                <label for="form3">Email</label>
+                                <input type="email" class="form-control" id="mail-accesso" name="mail-accesso">
+                                <label for="form3" id="mail-label">Email</label>
                               </div>
                             </div>
                             <div id="divisore-password">

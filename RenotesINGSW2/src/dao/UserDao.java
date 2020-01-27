@@ -15,6 +15,9 @@ public interface UserDao {
 	public User findByPrimaryKey(String username);
 	public void update(User user);
 	public void delete(User user);
+	public String getVerificationCode(User user);
+	public boolean getTwoFactorAutenticationActivated(User user);
+	public void setVerificationCode(User user, String code);
 	
 	public List<Ad> findBoughtAd(User user);
 	public List<Ad> findManagedAd(User user);
@@ -28,6 +31,4 @@ public interface UserDao {
 	
 	public void insertPaymentMethods(User user, String cardNumber);
 	public void deletePaymentMethods(User user, String cardNumber);
-
-	
 }

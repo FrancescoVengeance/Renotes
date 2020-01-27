@@ -40,6 +40,13 @@ function moduloRegistrazione()
 
 }
 
+if(sessionStorage.getItem("is_reloaded"))
+{
+    console.log("ricaricata");
+}
+
+window.onload
+
 function accedi()
 {
 	/*var bottoneRegistra = document.getElementById("inviaButton");
@@ -60,30 +67,3 @@ function accedi()
         }
 	});*/
 }
-function registrati() {alert("effettuo la registrazione")}
-function cerca() {alert("cerco le inserzioni");}
-
-/*var bottoneInvio = document.getElementById("bottoneInvio");
-bottoneInvio.onclick = function()
-{
-    var testo = $("#testo").val();
-    $.ajax({
-        url : "OperatorChatServlet",
-        type : "POST",
-        async : true,
-        contentType : "application/json",
-        data : JSON.stringify(testo),
-        success : function(data)
-        {
-            var listaMessaggi = document.getElementById("chatContent");
-            var paragrafo = document.createElement("p");
-            var messaggio = document.createTextNode(data);
-            paragrafo.appendChild(messaggio);
-            listaMessaggi.appendChild(paragrafo);
-        },
-        error : function()
-        {
-            alert("Errore"); 
-        }
-    });
-}*/

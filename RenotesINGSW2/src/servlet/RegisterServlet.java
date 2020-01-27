@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,8 +10,8 @@ import dao.DBManager;
 import dao.UserDao;
 import model.Cart;
 import model.User;
+import utility.EmailManager;
 import utility.PasswordManager;
-
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet 
@@ -40,16 +38,14 @@ public class RegisterServlet extends HttpServlet
 			cart.setId(2);
 			utente.setCart(cart);
 			utenteDao.save(utente);
-			//EmailManager.registerValidation(utente);
-			//TODO aggiustare l'invio di email
-			
-			RequestDispatcher rd = request.getRequestDispatcher("buttons.html");
-			rd.forward(request, response);
+			//Email.sendMail(utente.getMail());
+			EmailManager.registerValidation(utente);
+			request.getRequestDispatcher("buttons.html").forward(request, response);;
 		}
 		else
 		{
-			RequestDispatcher rd = request.getRequestDispatcher("form.html");
-			rd.forward(request, response);
+			//request.setAttribute("scrittaErrore", "");
+			//request.getRequestDispatcher("form.html").forward(request, response);
 		}
 	}
 

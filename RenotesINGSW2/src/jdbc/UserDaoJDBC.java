@@ -622,4 +622,69 @@ public class UserDaoJDBC implements UserDao{
 		
 		return user;
 	}
+
+	@Override
+	public String getVerificationCode(User user) 
+	{
+		String code = "";
+		try 
+		{
+			Connection connection = dataSource.getConnection();
+			String query = "select verificationCode from utente where mail = ?";
+			PreparedStatement cmd = connection.prepareStatement(query);
+			cmd.setString(1, user.getMail());
+			ResultSet res = cmd.executeQuery();
+			
+			while(res.next()) code = res.getString("verificationcode");
+			connection.close();
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return code;
+	}
+
+	@Override
+	public boolean getTwoFactorAutenticationActivated(User user) {
+		boolean isActivated = false;
+		
+		try 
+		{
+			Connection con = dataSource.getConnection();
+			String query = "select twofactorautentication from utente where mail = ?";
+			PreparedStatement cmd = con.prepareStatement(query);
+			cmd.setString(1, user.getMail());
+			ResultSet res = cmd.executeQuery();
+			
+			while(res.next()) isActivated = res.getBoolean("twofactorautentication");
+			con.close();
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return isActivated;
+	}
+
+	@Override
+	public void setVerificationCode(User user, String code) 
+	{
+		try 
+		{
+			Connection con = dataSource.getConnection();
+			String query = "update utente set verificationcode = ? where mail = ?";
+			PreparedStatement cmd = con.prepareStatement(query);
+			cmd.setString(1, code);
+			cmd.setString(2, user.getMail());
+			cmd.executeUpdate();
+			con.close();
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+	}
 }

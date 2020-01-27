@@ -1,7 +1,6 @@
 package utility;
 
 import java.util.Properties;
-
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -12,44 +11,30 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import model.Cart;
+import dao.DBManager;
 import model.User;
 
 public class EmailManager 
-{
-	public static void main(String[] args) 
-	{
-		User user = new User();
-		user.setUsername("Francuzzu1");
-		user.setMail("spsfnc98s12d005a@studenti.unical.it");
-		Cart cart = new Cart();
-		cart.setId(0);
-		user.setCart(cart);
-		
-		
-	}
-	/*private static final String from = "noreplyrenotes12@gmail.com";
+{	
+	private static final String from = "noreplyrenotes12@gmail.com";
 	private static final String password = "33851242Re";
 	
 	public static void main(String[] args) 
 	{
-		User user = new User();
-		user.setUsername("Francuzzu1");
-		user.setMail("spsfnc98s12d005a@studenti.unical.it");
-		Cart cart = new Cart();
-		cart.setId(0);
-		user.setCart(cart);
-		
-		EmailManager.registerValidation(user);
+		//(Math.random() * ((max - min) + 1)) + min
+		double code = Math.random() * ((9999 - 1000) + 1);
+		int code2 = (int) code;
+		System.out.println(code2);
 	}
 	
-	public static void registerValidation(User user)
+	protected static Session getSession() 
 	{
 		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "465");
+		props.put("mail.smtp.ssl.enable", "true");
+		props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
 		
 		Session session = Session.getInstance(props, new Authenticator() {
 			@Override
@@ -58,15 +43,39 @@ public class EmailManager
 				return new PasswordAuthentication(from, password);
 			}
 		});
-        
+		
+		return session;
+	}
+	
+	public static void sendTwoFactorAutenticationCode(User user)
+	{
+		double code2 = Math.random() * ((9999 - 1000) + 1);
+		int code = (int) code2;
+		
+		String text = "Il tuo codice di verifica è: " + code + ".\n" +
+						"Inseriscilo nel form per completare il login.\n"
+						+ "Saluti dallo staff di Renotes";
+		
+		try 
+		{
+			Transport.send(prepareMessage(getSession(), user.getMail(), text));
+			DBManager.getInstance().getUserDao().setVerificationCode(user, Integer.toString(code));
+		} 
+		catch (MessagingException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void registerValidation(User user)
+	{   
 		String text = "Ciao " + user.getUsername() + ",\n" +
 				"benvenuto su Renotes!!\n"+
 				"La tua registrazione è stata completata, buon divertimento!";
 		
-		Message msg = prepareMessage(session,user.getMail(), text);
 		try 
 		{
-			Transport.send(msg);
+			Transport.send(prepareMessage(getSession(), user.getMail(), text));
 		} 
 		catch (MessagingException e) 
 		{
@@ -76,8 +85,7 @@ public class EmailManager
 	
 	protected static Message prepareMessage(Session session, String mailTo, String text)
 	{
-		
-		Message message = new MimeMessage(session);
+		MimeMessage message = new MimeMessage(session);
 		try 
 		{
 			message.setFrom(new InternetAddress(from));
@@ -94,8 +102,6 @@ public class EmailManager
 			e.printStackTrace();
 		}
 		
-		
-		
-		return null;
-	}*/
+		return message;
+	}
 }

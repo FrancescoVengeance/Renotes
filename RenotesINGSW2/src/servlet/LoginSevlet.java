@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.DBManager;
 import model.User;
+import utility.EmailManager;
 import utility.PasswordManager;
 
 @WebServlet("/LoginSevlet")
@@ -22,7 +23,7 @@ public class LoginSevlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		//impossibile contattare il metodo get su un login
+		//request.getRequestDispatcher("twofactor.jsp").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -38,19 +39,21 @@ public class LoginSevlet extends HttpServlet {
 				session.setAttribute("Nome", utente.getUsername());
 				session.setAttribute("Mail", utente.getMail());
 				
-				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				request.setAttribute("mail", utente.getMail());
+				EmailManager.sendTwoFactorAutenticationCode(utente);
+				RequestDispatcher rd = request.getRequestDispatcher("twofactor.jsp");
 				rd.forward(request, response);
 			}
 			else
 			{
-				RequestDispatcher rd = request.getRequestDispatcher("form.html");
-				rd.forward(request, response);
+				request.setAttribute("scrittaErrore", "Mail o password errate");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
 		}
 		else
 		{
-			RequestDispatcher rd = request.getRequestDispatcher("form.html");
-			rd.forward(request, response);
+			request.setAttribute("scrittaErrore", "Mail o password errate");
+			request.getRequestDispatcher("index.jsp").forward(request, response);;
 		}
 	}
 
