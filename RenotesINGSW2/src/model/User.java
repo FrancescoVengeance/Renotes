@@ -2,8 +2,8 @@ package model;
 
 import java.util.List;
 
-public class User {
-	
+public class User 
+{	
 	private String username;
 	private String mail;
 	private String password;

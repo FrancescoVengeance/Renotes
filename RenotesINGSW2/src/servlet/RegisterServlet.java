@@ -40,7 +40,7 @@ public class RegisterServlet extends HttpServlet
 			utenteDao.save(utente);
 			//Email.sendMail(utente.getMail());
 			EmailManager.registerValidation(utente);
-			request.getRequestDispatcher("buttons.html").forward(request, response);;
+			request.getRequestDispatcher("profile.jsp").forward(request, response);;
 		}
 		else
 		{

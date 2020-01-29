@@ -30,7 +30,7 @@ public class TwoFactorAutenticationServlet extends HttpServlet {
 		
 		if(DBManager.getInstance().getUserDao().getVerificationCode(utente).equals(code))
 		{
-			request.getRequestDispatcher("qualcosa.html").forward(request, response);
+			request.getRequestDispatcher("profile.jsp").forward(request, response);
 		}
 	}
 }

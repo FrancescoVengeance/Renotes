@@ -17,7 +17,7 @@ import model.User;
 public class EmailManager 
 {	
 	private static final String from = "noreplyrenotes12@gmail.com";
-	private static final String password = "XXXXXXXXXX";
+	private static final String password = "33851242Re";
 	
 	protected static Session getSession() 
 	{
