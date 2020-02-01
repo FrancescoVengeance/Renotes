@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -30,7 +31,16 @@ public class ViewProfileServlet extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		HttpSession session = request.getSession();
-		//User utente = DBManager.getInstance().getUserDao().findByPrimaryKey((String) session.getAttribute("Mail"));
+		User utente = DBManager.getInstance().getUserDao().findByPrimaryKey((String) session.getAttribute("Mail"));
+		
+		InputStream image = DBManager.getInstance().getUserDao().getUserImage(utente);
+		
+		if(image != null)
+		{
+			System.out.println(image);
+			
+		}
+		
 		ArrayList<String> dati = new ArrayList<String>();
 		dati.add((String)session.getAttribute("Nome"));
 		dati.add((String)session.getAttribute("Mail"));

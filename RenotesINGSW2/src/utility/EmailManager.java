@@ -17,7 +17,7 @@ import model.User;
 public class EmailManager 
 {	
 	private static final String from = "noreplyrenotes12@gmail.com";
-	private static final String password = "xxxxx";
+	private static final String password = "33851242Re";
 	
 	protected static Session getSession() 
 	{
@@ -39,7 +39,7 @@ public class EmailManager
 		return session;
 	}
 	
-	public static void sendTwoFactorAutenticationCode(User user)
+	public static int sendTwoFactorAutenticationCode(User user)
 	{
 		double code2 = Math.random() * ((9999 - 1000) + 1);
 		int code = (int) code2;
@@ -50,13 +50,14 @@ public class EmailManager
 		
 		try 
 		{
-			Transport.send(prepareMessage(getSession(), user.getMail(), text));
-			DBManager.getInstance().getUserDao().setVerificationCode(user, Integer.toString(code));
+			Transport.send(prepareMessage(getSession(), user.getMail(), text, "Verification code"));
+			//DBManager.getInstance().getUserDao().setVerificationCode(user, Integer.toString(code));
 		} 
 		catch (MessagingException e) 
 		{
 			e.printStackTrace();
 		}
+		return code;
 	}
 	
 	public static void passwordModified(User user)
@@ -66,7 +67,7 @@ public class EmailManager
 		
 		try 
 		{
-			Transport.send(prepareMessage(getSession(), user.getMail(), text));
+			Transport.send(prepareMessage(getSession(), user.getMail(), text, "Password modificata"));
 		} 
 		catch (MessagingException e) 
 		{
@@ -82,7 +83,7 @@ public class EmailManager
 		
 		try 
 		{
-			Transport.send(prepareMessage(getSession(), user.getMail(), text));
+			Transport.send(prepareMessage(getSession(), user.getMail(), text,"Benvenuto su Renotes"));
 		} 
 		catch (MessagingException e) 
 		{
@@ -90,14 +91,14 @@ public class EmailManager
 		}
 	}
 	
-	protected static Message prepareMessage(Session session, String mailTo, String text)
+	protected static Message prepareMessage(Session session, String mailTo, String text, String subject)
 	{
 		MimeMessage message = new MimeMessage(session);
 		try 
 		{
 			message.setFrom(new InternetAddress(from));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(mailTo));
-			message.setSubject("Benvenuto su Renotes");
+			message.setSubject(subject);
 			message.setText(text);
 		} 
 		catch (AddressException e) 

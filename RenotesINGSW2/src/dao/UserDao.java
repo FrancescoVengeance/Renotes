@@ -1,12 +1,10 @@
 package dao;
 
+import java.io.InputStream;
 import java.util.List;
-
 import model.Ad;
 import model.PaymentMethod;
 import model.User;
-
-
 
 public interface UserDao {
 	
@@ -19,6 +17,8 @@ public interface UserDao {
 	public boolean getTwoFactorAutenticationActivated(User user);
 	public void setVerificationCode(User user, String code);
 	public void modifyUser(User user, String password);
+	public void modifyImage(User user, InputStream image);
+	public InputStream getUserImage(User user);
 	
 	public List<Ad> findBoughtAd(User user);
 	public List<Ad> findManagedAd(User user);

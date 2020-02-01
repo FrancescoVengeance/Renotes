@@ -45,7 +45,6 @@ if(sessionStorage.getItem("is_reloaded"))
     console.log("ricaricata");
 }
 
-window.onload
 
 function accedi()
 {

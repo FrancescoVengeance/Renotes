@@ -40,3 +40,18 @@ function caricaDati(data)
     $("#username-input").text(data[0]);
     $("#email-input").text(data[1]);
 }
+
+/*function logOut()
+{
+    $.ajax({
+        url: "LogoutServlet",
+        type: "POST",
+        async: true,
+        data: JSON.stringify("out"),
+        success: function(data)
+        {
+            alert("Logout");
+        },
+        error: function(){}
+    });
+}*/

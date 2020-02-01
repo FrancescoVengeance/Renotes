@@ -24,9 +24,12 @@
                 
   
         <div class="text-center">
+          <form action="ModifyUserImage" method="POST" enctype="multipart/form-data">  
           <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
           <h6>Scegli la foto di profilo che preferisci</h6>
-          <input type="file" class="text-center center-block file-upload">
+          <input type="file" name="file" class="text-center center-block file-upload">
+          <input type="submit" value="Applica">
+          </form>
         </div></hr><br>
   
             <hr>
@@ -35,6 +38,7 @@
               <div class="panel-heading"><a href=""><strong>Le mie inserzioni</strong></a><i class="fa fa-link fa-1x"></i></div>
               <div class="panel-heading"><a href=""><strong>I miei metodi di pagamento</strong></a><i class="fa fa-link fa-1x"></i></div>
               <div class="panel-heading"><a href=""><font color="00A000"><strong>Carica inserzione</strong></font></a><i class="fa fa-link fa-1x"></i></div>
+              <button onclick="logOut()">Disconnettiti</button>
             </div> 
           </div><!--/col-3-->
         
@@ -58,7 +62,8 @@
                             </div>
                         </div>
             
-                        <div class="form-group">
+                        <script>
+                        </script>   <div class="form-group">
                             
                             <div class="col-xs-6">
                                 <label for="password"><h4>Password</h4></label>
@@ -85,4 +90,22 @@
   </body>
 
   <script type="text/JavaScript" src="profile.js"></script>
+  <script>
+  
+  function logOut()
+{
+    $.ajax({
+        url: "LogoutServlet",
+        type: "POST",
+        async: true,
+        data: JSON.stringify("out"),
+        success: function(data)
+        {
+           window.location.replace("http://localhost:8080/RenotesINGSW2/index.jsp");
+        },
+        error: function(){}
+    });
+}
+  
+  </script>
 </html>

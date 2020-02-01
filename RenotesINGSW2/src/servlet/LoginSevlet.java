@@ -40,7 +40,8 @@ public class LoginSevlet extends HttpServlet {
 				session.setAttribute("Mail", utente.getMail());
 				
 				request.setAttribute("mail", utente.getMail());
-				EmailManager.sendTwoFactorAutenticationCode(utente);
+				DBManager.getInstance().getUserDao().setVerificationCode(utente, Integer.toString(EmailManager.sendTwoFactorAutenticationCode(utente)));
+				//EmailManager.sendTwoFactorAutenticationCode(utente);
 				RequestDispatcher rd = request.getRequestDispatcher("twofactor.jsp");
 				rd.forward(request, response);
 			}

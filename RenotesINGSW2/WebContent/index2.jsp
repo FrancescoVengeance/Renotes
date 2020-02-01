@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding ="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
+
 <html lang="it">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Renotes login</title>
+  <meta name="google-signin-client_id" content="263763617027-i5vlk7ff7c7snr3r4iig9q31be5acm34.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <title>ReNotes</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <!--<meta name="google-signin-client_id" content="263763617027-i5vlk7ff7c7snr3r4iig9q31be5acm34.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>-->
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
@@ -19,7 +20,7 @@
   
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet" >
-  <link href="cazzo.css" rel="sylesheet" type="text/css">
+  
 
   <style type="text/css">
     html,
@@ -55,7 +56,8 @@
       background-color: #ffffff;
       border:none;
     }
-    #centered-button {
+    
+   #centered-button {
    	margin-left: 35%;
    }
   </style>
@@ -76,20 +78,20 @@
 
         <!--Grid row-->
         <div class="row wow fadeIn">
-          
+
           <!--Grid column-->
           <div class="col-md-6 mb-4 white-text text-center text-md-left">
 			  
             <img src= "resources/renotes_logo.png" width="550" height="160" class="img-fluid z-depth-0-half">
 
-			      <div class="card mt-5">
-				        <div class="md-form mt-2 mb-2">
+			<div class="card mt-5">
+				<div class="md-form mt-2 mb-2">
           			<button class = "fas grey-text fa-search prefix tasto" onClick="cerca()"></button>
           			<input type="text" class="form-control">
        			  <label for="form3">Cerca anche senza registrarti!</label>
-   		 	    </div>
-			      </div>  
-		      </div>
+   		 	  </div>
+			</div>  
+		  </div>
           <!--Grid column-->
 
           <!--Grid column-->
@@ -99,57 +101,41 @@
             <div class="card">
 
               <!--Card content-->
-              <form class="card-body" id="form-registrazione" action="LoginSevlet" method="post">
-                            <h3 class="dark-grey-text text-center" id="scritta-superiore"> <strong>Accedi</strong></h3>
-                            <hr>
-                            <h6 style="color: red;">${scrittaErrore}</h6>
-                  <div id="campiInput">
-                    <div id="divisore-mail">
-                              <div class="md-form">
-                                <i class="fas fa-envelope prefix grey-text"></i>
-                                <input type="email" class="form-control" id="mail-accesso" name="mail-accesso">
-                                <label for="form3" id="mail-label">Email</label>
-                              </div>
-                            </div>
-                            <div id="divisore-password">
-                              <div class="md-form">
-                                <i class="fas fa-key prefix grey-text"></i>
-                                <input type="password" class="form-control" id="password-accesso" name="password-accesso">
-                                <label for="form2">Password</label>
-                              </div>
-                            </div>
-                          </div>
-                    <div class="text-center">
-                      <div id="divisore-invia">
-                                <button class="btn btn-brown" id="inviaButton"  type="submit">invia</button>
-                              </div>
-                              <pre></pre>
-                      <button class="btn alert-secondary" id="registrati-ora" onClick="moduloRegistrazione()">Non hai un account? Registrati</button>
-                      <pre></pre> 	
-				  	        <div class="g-signin2" id="centered-button" data-onsuccess="onSignIn"></div>
-				  	        <pre></pre>
-				  	        <div class="fb-login-button" data-size="medium" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false">
-                    </div>
-                    </div>
+              <div class="card-body">
 
-              </form>
-                
-              <!--form action="LoginSevlet" method="POST" class="card-body">
-                
-                <h3 class="dark-grey-text text-center" id="scritta-superiore"> <strong>Accedi</strong></h3>
-                <hr>
-                
-                <div>
-                  <input type="text" class="form-control" name="mail-accesso" placeholder="Inserisci mail">
-                  <label></label>
-                  <input type="password" class="form-control" name="password-accesso" placeholder="Inserisci password">
-                </div>
-                <div>
-                  <button class="btn btn-brown" id="inviaButton"  type="submit">invia</button>
-                  <button class="btn alert-secondary" id="registrati-ora" onClick="moduloRegistrazione()">Non hai un account? Registrati</button>
-                </div>
+                <!-- Form -->
+                  <!-- Heading -->
+                  <h3 class="dark-grey-text text-center" id="scritta-superiore"> <strong>Accedi</strong></h3>
+                  <hr>
+				<div id="campiInput">
+				  <div id="divisore-mail">
+                  	<div class="md-form">
+                    	<i class="fas fa-envelope prefix grey-text"></i>
+                    	<input type="text" class="form-control" id="mail-accesso" required>
+                    	<label for="form3">Email</label>
+                  	</div>
+                  </div>
+                  <div id="divisore-password">
+                  	<div class="md-form">
+                  		<i class="fas fa-key prefix grey-text"></i>
+                    	<input type="password" class="form-control" id="password-accesso" required>
+                    	<label for="form2">Password</label>
+                  	</div>
+                  </div>
+                 </div>
+                 <div id="divisore-tasti">
+				  <div class="text-center">
+                    <button class="btn btn-brown" id="inviaButton" onClick="accedi()">invia</button>
+                    <pre></pre>
+				  	<button class="btn alert-secondary" id="registrati-ora" onClick="moduloRegistrazione()">Non hai un account? Registrati</button>
+				  	<pre></pre> 	
+				  	<div class="g-signin2" id="centered-button" data-onsuccess="onSignIn"></div>
+				  	<pre></pre>
+				  	<div class="fb-login-button" data-size="medium" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
+				  </div>
+				 </div>
 
-              </form>-->
+              </div>
 			
             </div>
             <!--/.Card-->
@@ -315,10 +301,6 @@
         
         <!--/First row-->
 
-        <!--Second row-->
-        
-        <!--/Second row-->
-
       </section>
       <!--Section: More-->
 
@@ -358,88 +340,48 @@
     // Animations initialization
     new WOW().init();
   </script>
+  
+  <script>window.fbAsyncInit = function() {
+	    FB.init({
+	        appId      : '179061136835560',
+	        cookie     : true,
+	        xfbml      : true,
+	        version    : 'v5.0'
+	      });
+	        
+	      FB.getLoginStatus(function(response) {
+	          statusChangeCallback(response);
+	      });  
+	        
+	    };
 
-<script>
-	function onSignIn(googleUser) 
-	{
-		var profile = googleUser.getBasicProfile();
-    console.log(profile.getEmail());
-    var dati = [profile.getEmail(), profile.getName()];
-		$.ajax({
-			url: "GoogleLogin",
-			type: "POST",
-			async: true,
-			contentType: "application/json",
-			data: JSON.stringify(profile.getEmail()),
-			success: function(data)
-			{
-        window.location.replace("http://localhost:8080/RenotesINGSW2/profile.jsp");
-			},
-			error: function()
-			{
-				alert("Impossibile effettuare il login");
-			}
-		});
-
-		  /*var profile = googleUser.getBasicProfile();
-		  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-		  console.log('Name: ' + profile.getName());
-		  console.log('Image URL: ' + profile.getImageUrl());
-		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-		  */
-	}
-	
-	  function signOut() {
-	    var auth2 = gapi.auth2.getAuthInstance();
-	    auth2.signOut().then(function () {
-	      console.log('User signed out.');
-	    });
+	    (function(d, s, id){
+	       var js, fjs = d.getElementsByTagName(s)[0];
+	       if (d.getElementById(id)) {return;}
+	       js = d.createElement(s); js.id = id;
+	       js.src = "https://connect.facebook.net/en_US/sdk.js";
+	       fjs.parentNode.insertBefore(js, fjs);
+	     }(document, 'script', 'facebook-jssdk'));
+	    
+	    function statusChangeCallback(response){
+	  	  if(response.status==='connected'){
+	  		  console.log('connesso');
+	  		  }else{
+	  			  console.log('disconnesso');
+	  		  }
+	  	
 	  }
-	</script>
 
-<script>window.fbAsyncInit = function() {
-  FB.init({
-      appId      : '179061136835560',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v5.0'
-    });
-      
-    FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-    });  
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-  
-  function statusChangeCallback(response){
-    if(response.status==='connected'){
-      console.log('connesso');
-      }else{
-        console.log('disconnesso');
-      }
-  
-}
-
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-  
-  function logout() {
-  FB.logout(function(respons) {
-  })
-}
-</script>
-
+	    function checkLoginState() {
+	      FB.getLoginStatus(function(response) {
+	        statusChangeCallback(response);
+	      });
+	    }
+	    
+	    function logout() {
+	  	FB.logout(function(respons) {
+	  	})
+	  }</script>
 </body>
   <script type="text/JavaScript" src="index.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

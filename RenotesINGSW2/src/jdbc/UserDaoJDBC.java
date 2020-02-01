@@ -1,5 +1,8 @@
 package jdbc;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -706,6 +709,51 @@ public class UserDaoJDBC implements UserDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void modifyImage(User user, InputStream image) 
+	{
+		try 
+		{
+			Connection con = dataSource.getConnection();
+			String query = "update utente set immagineprofilo = ? where mail = ?";
+			PreparedStatement cmd = con.prepareStatement(query);
+			cmd.setBinaryStream(1, image);
+			cmd.setString(2, user.getMail());
+			cmd.executeUpdate();
+			con.close();
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
+
+	@Override
+	public InputStream getUserImage(User user) 
+	{
+		InputStream image = null;
+		
+		try 
+		{
+			Connection con = dataSource.getConnection();
+			String query = "select immagineprofilo from utente where mail = ?";
+			PreparedStatement cmd = con.prepareStatement(query);
+			cmd.setString(1, user.getMail());
+			ResultSet res = cmd.executeQuery();
+			
+			while(res.next()) image = res.getBinaryStream("immagineprofilo");
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return image;
+	}
+	
+	
 }

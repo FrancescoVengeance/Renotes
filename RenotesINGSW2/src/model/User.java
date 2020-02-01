@@ -1,10 +1,12 @@
 package model;
 
+import java.io.InputStream;
 import java.util.List;
 
 public class User 
 {	
 	private String username;
+	private InputStream image;
 	private String mail;
 	private String password;
 	private Cart cart;
@@ -12,6 +14,16 @@ public class User
 	private List<Ad> managedAd;
 	private List<PaymentMethod> paymentMethods;
 	//INSERIRE ATTRIBUTO PER IL RATE
+	
+	public void setImage(InputStream image)
+	{
+		this.image = image;
+	}
+	
+	public InputStream getImage()
+	{
+		return this.image;
+	}
 	
 	public List<PaymentMethod> getPaymentMethods() {
 		return paymentMethods;
