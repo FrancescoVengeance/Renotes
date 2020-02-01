@@ -18,6 +18,7 @@ public interface UserDao {
 	public String getVerificationCode(User user);
 	public boolean getTwoFactorAutenticationActivated(User user);
 	public void setVerificationCode(User user, String code);
+	public void modifyUser(User user, String password);
 	
 	public List<Ad> findBoughtAd(User user);
 	public List<Ad> findManagedAd(User user);

@@ -42,7 +42,7 @@
             <div class="tab-content">
               <div class="tab-pane active" id="home">
                   <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
+                    <form class="form" action="ModifyUserServlet" method="POST" id="registrationForm">
                         <div class="form-group">
                             
                             <div class="col-xs-6">

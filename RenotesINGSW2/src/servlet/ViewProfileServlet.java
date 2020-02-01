@@ -30,10 +30,10 @@ public class ViewProfileServlet extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		HttpSession session = request.getSession();
-		User utente = DBManager.getInstance().getUserDao().findByPrimaryKey((String) session.getAttribute("Mail"));
+		//User utente = DBManager.getInstance().getUserDao().findByPrimaryKey((String) session.getAttribute("Mail"));
 		ArrayList<String> dati = new ArrayList<String>();
-		dati.add(utente.getUsername());
-		dati.add(utente.getMail());
+		dati.add((String)session.getAttribute("Nome"));
+		dati.add((String)session.getAttribute("Mail"));
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(dati);

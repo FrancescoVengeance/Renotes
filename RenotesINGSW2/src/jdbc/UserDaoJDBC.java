@@ -687,4 +687,25 @@ public class UserDaoJDBC implements UserDao{
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void modifyUser(User user, String password)
+	{
+		try 
+		{
+			Connection con = dataSource.getConnection();
+			String query = "update utente set password = ? where mail = ?";
+			PreparedStatement cmd = con.prepareStatement(query);
+			cmd.setString(1, password);
+			cmd.setString(2, user.getMail());
+			cmd.executeUpdate();
+			con.close();
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

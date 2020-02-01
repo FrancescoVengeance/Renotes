@@ -24,7 +24,7 @@ public class DBManager
 		try 
 		{
 			Class.forName("org.postgresql.Driver");
-			dataSource = new DataSource("jdbc:postgresql://renotes.cd53zwl9jl0o.us-east-2.rds.amazonaws.com:5432/postgres","Renotes","RenotesDB");
+			dataSource = new DataSource("jdbc:postgresql://renotes.cd53zwl9jl0o.us-east-2.rds.amazonaws.com:5432/postgres","xxxxx","xxxxxx");
 
 		} 
 		catch (Exception e) {

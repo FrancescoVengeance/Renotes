@@ -17,7 +17,7 @@ import model.User;
 public class EmailManager 
 {	
 	private static final String from = "noreplyrenotes12@gmail.com";
-	private static final String password = "33851242Re";
+	private static final String password = "xxxxx";
 	
 	protected static Session getSession() 
 	{
@@ -52,6 +52,21 @@ public class EmailManager
 		{
 			Transport.send(prepareMessage(getSession(), user.getMail(), text));
 			DBManager.getInstance().getUserDao().setVerificationCode(user, Integer.toString(code));
+		} 
+		catch (MessagingException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void passwordModified(User user)
+	{
+		String text = "Ciao " + user.getUsername() + ",\n" +
+					"la tua password è stata modificata";
+		
+		try 
+		{
+			Transport.send(prepareMessage(getSession(), user.getMail(), text));
 		} 
 		catch (MessagingException e) 
 		{
