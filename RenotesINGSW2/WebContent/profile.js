@@ -27,6 +27,7 @@ $.ajax({
     {
         document.getElementById("username-input").setAttribute("placeholder", data[0]);
         document.getElementById("email-input").setAttribute("placeholder", data[1]);
+        document.getElementById("rate").setAttribute("value", data[2]);
         //caricaDati(data);
     },
     error: function()

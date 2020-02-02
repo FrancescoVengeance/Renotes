@@ -10,8 +10,8 @@
   <title>Renotes login</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <!--<meta name="google-signin-client_id" content="263763617027-i5vlk7ff7c7snr3r4iig9q31be5acm34.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>-->
+  <meta name="google-signin-client_id" content="263763617027-i5vlk7ff7c7snr3r4iig9q31be5acm34.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
@@ -19,7 +19,6 @@
   
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet" >
-  <link href="cazzo.css" rel="sylesheet" type="text/css">
 
   <style type="text/css">
     html,
@@ -107,30 +106,29 @@
                     <div id="divisore-mail">
                               <div class="md-form">
                                 <i class="fas fa-envelope prefix grey-text"></i>
-                                <input type="email" class="form-control" id="mail-accesso" name="mail-accesso">
+                                <input type="email" class="form-control" id="mail-accesso" name="mail-accesso" required>
                                 <label for="form3" id="mail-label">Email</label>
                               </div>
                             </div>
                             <div id="divisore-password">
                               <div class="md-form">
                                 <i class="fas fa-key prefix grey-text"></i>
-                                <input type="password" class="form-control" id="password-accesso" name="password-accesso">
+                                <input type="password" class="form-control" id="password-accesso" name="password-accesso" required>
                                 <label for="form2">Password</label>
                               </div>
                             </div>
                           </div>
+                   <div id="divisore-tasti">
                     <div class="text-center">
-                      <div id="divisore-invia">
-                                <button class="btn btn-brown" id="inviaButton"  type="submit">invia</button>
-                              </div>
-                              <pre></pre>
+                      <button class="btn btn-brown" id="inviaButton"  type="submit">invia</button>                
+                      <pre></pre>
                       <button class="btn alert-secondary" id="registrati-ora" onClick="moduloRegistrazione()">Non hai un account? Registrati</button>
                       <pre></pre> 	
-				  	        <div class="g-signin2" id="centered-button" data-onsuccess="onSignIn"></div>
-				  	        <pre></pre>
-				  	        <div class="fb-login-button" data-size="medium" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false">
+				  	  <div class="g-signin2" id="centered-button" data-onsuccess="onSignIn"></div>
+				  	  <pre></pre>
+				  	  <div class="fb-login-button" data-size="medium" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false"></div>
                     </div>
-                    </div>
+                   </div>
 
               </form>
                 
