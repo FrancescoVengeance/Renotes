@@ -729,7 +729,6 @@ public class UserDaoJDBC implements UserDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override

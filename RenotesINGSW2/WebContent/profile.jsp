@@ -7,6 +7,10 @@
     <title>Profilo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <meta name="google-signin-client_id" content="263763617027-i5vlk7ff7c7snr3r4iig9q31be5acm34.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -38,7 +42,7 @@
               <div class="panel-heading"><a href=""><strong>Le mie inserzioni</strong></a><i class="fa fa-link fa-1x"></i></div>
               <div class="panel-heading"><a href=""><strong>I miei metodi di pagamento</strong></a><i class="fa fa-link fa-1x"></i></div>
               <div class="panel-heading"><a href=""><font color="00A000"><strong>Carica inserzione</strong></font></a><i class="fa fa-link fa-1x"></i></div>
-              <button onclick="logOut()">Disconnettiti</button>
+              <button onclick="signOut();">Disconnettiti</button>
             </div> 
           </div><!--/col-3-->
         
@@ -91,9 +95,8 @@
 
   <script type="text/JavaScript" src="profile.js"></script>
   <script>
-  
-  function logOut()
-{
+  function signOut()
+  {
     $.ajax({
         url: "LogoutServlet",
         type: "POST",
@@ -101,11 +104,41 @@
         data: JSON.stringify("out"),
         success: function(data)
         {
-           window.location.replace("http://localhost:8080/RenotesINGSW2/index.jsp");
+          //document.cookie = "cookiename = ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+          //console.log("logout");
+          
+          /*var now = new Date();
+          now.setMonth(now.getMonth() - 1);
+          document.cookie = "expires = " + now.toUTCString() + ";";*/
+          //gapi.auth2.getAuthInstance().disconnect();
+          window.location.replace("http://localhost:8080/RenotesINGSW2/index.jsp");
         },
         error: function(){}
     });
-}
+      //document.cookie = "cookiename = ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+      //window.location.replace("http://localhost:8080/RenotesINGSW2/index.jsp");
+	    /*var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.signOut().then(function () {
+        console.log('User signed out.');
+        document.cookie = "cookiename = ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+        window.location.replace("http://localhost:8080/RenotesINGSW2/index.jsp");
+	    });*/
+	  }
+  function logOut()
+  {
+    $.ajax({
+        url: "LogoutServlet",
+        type: "POST",
+        async: true,
+        data: JSON.stringify("out"),
+        success: function(data)
+        {
+          //document.cookie = "cookiename = ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+          //window.location.replace("http://localhost:8080/RenotesINGSW2/index.jsp");
+        },
+        error: function(){}
+    });
+  }
   
   </script>
 </html>

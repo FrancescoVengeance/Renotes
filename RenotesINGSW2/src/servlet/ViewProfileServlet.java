@@ -33,13 +33,13 @@ public class ViewProfileServlet extends HttpServlet
 		HttpSession session = request.getSession();
 		User utente = DBManager.getInstance().getUserDao().findByPrimaryKey((String) session.getAttribute("Mail"));
 		
-		InputStream image = DBManager.getInstance().getUserDao().getUserImage(utente);
+		//InputStream image = DBManager.getInstance().getUserDao().getUserImage(utente);
 		
-		if(image != null)
+		/*if(image != null)
 		{
 			System.out.println(image);
 			
-		}
+		}*/
 		
 		ArrayList<String> dati = new ArrayList<String>();
 		dati.add((String)session.getAttribute("Nome"));

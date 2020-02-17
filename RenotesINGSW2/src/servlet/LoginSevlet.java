@@ -31,6 +31,7 @@ public class LoginSevlet extends HttpServlet {
 		String mail = (String) request.getParameter("mail-accesso");
 		String password = (String) request.getParameter("password-accesso");
 		User utente = DBManager.getInstance().getUserDao().findByPrimaryKey(mail);
+		//System.out.println(utente);
 		if(utente != null && utente.getMail().equals(mail))
 		{
 			if(PasswordManager.getMD5(password).equals(utente.getPassword()))
@@ -38,7 +39,6 @@ public class LoginSevlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("Nome", utente.getUsername());
 				session.setAttribute("Mail", utente.getMail());
-				
 				request.setAttribute("mail", utente.getMail());
 				DBManager.getInstance().getUserDao().setVerificationCode(utente, Integer.toString(EmailManager.sendTwoFactorAutenticationCode(utente)));
 				//EmailManager.sendTwoFactorAutenticationCode(utente);

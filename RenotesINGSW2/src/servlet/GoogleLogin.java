@@ -1,4 +1,4 @@
-package servlet;
+	package servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -31,7 +31,7 @@ public class GoogleLogin extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{	
-		
+		System.out.println("Google");
 		JsonElement json = new Gson().fromJson(request.getReader(), JsonElement.class);
 		String mail = json.toString();
 		mail = mail.substring(1, mail.length() - 1);

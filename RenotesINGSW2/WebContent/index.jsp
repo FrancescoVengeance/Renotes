@@ -10,8 +10,8 @@
   <title>Renotes login</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <!--<meta name="google-signin-client_id" content="263763617027-i5vlk7ff7c7snr3r4iig9q31be5acm34.apps.googleusercontent.com">
-  <script src="https://apis.google.com/js/platform.js" async defer></script>-->
+  <meta name="google-signin-client_id" content="263763617027-i5vlk7ff7c7snr3r4iig9q31be5acm34.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
@@ -362,7 +362,7 @@
 <script>
 	function onSignIn(googleUser) 
 	{
-		var profile = googleUser.getBasicProfile();
+    var profile = googleUser.getBasicProfile();
     console.log(profile.getEmail());
     var dati = [profile.getEmail(), profile.getName()];
 		$.ajax({
@@ -388,13 +388,6 @@
 		  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 		  */
 	}
-	
-	  function signOut() {
-	    var auth2 = gapi.auth2.getAuthInstance();
-	    auth2.signOut().then(function () {
-	      console.log('User signed out.');
-	    });
-	  }
 	</script>
 
 <script>window.fbAsyncInit = function() {
