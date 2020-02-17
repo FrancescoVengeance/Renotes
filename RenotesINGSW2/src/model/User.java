@@ -13,8 +13,17 @@ public class User
 	private List<Ad> boughtAd;
 	private List<Ad> managedAd;
 	private List<PaymentMethod> paymentMethods;
+	private int rate;
 	//INSERIRE ATTRIBUTO PER IL RATE
 	
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
+
 	public void setImage(InputStream image)
 	{
 		this.image = image;
@@ -69,7 +78,6 @@ public class User
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
 	
 
 }
